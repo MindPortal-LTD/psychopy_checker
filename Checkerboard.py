@@ -100,11 +100,12 @@ from pylsl import StreamInfo, StreamOutlet # import required classes
 info = StreamInfo(name='TriggerStream', type='Markers', channel_count=1, channel_format='string', source_id='Example') # sets variables for object info
 outlet = StreamOutlet(info) # initialize stream.
 
+ser = serial.Serial('/dev/COM3', 115200, timeout=0.050) #code to init the serial comms
 #INIT THE STREAM ABOVE - OPEN COM PORT HERE
 
 # --- Initialize components for Routine "Wait_Begin" ---
 text_2 = visual.TextStim(win=win, name='text_2',
-    text="Please check the Imagent connection\n\nPress 'space' to start",  #CHANGE THIS TEXT
+    text="Please check the Imagent connection\n\nPress 'space' to start",
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
@@ -402,6 +403,7 @@ for thisExperiment in Experiment:
     # Run 'Begin Routine' code from code_2
     #outlet.push_sample(x=[1])
     outlet.push_sample(x=['trialStart'])          #TRIGGER IS HERE FOR STARTING EXPERIMENT - ONLY ADD EXTRA TRIGGERS, DO NOT REPLACE
+    ser.write(1)    #set the trigger high for the rest of the paradigm
     # keep track of which components have finished
     fNIRS_triggerComponents = [text_3]
     for thisComponent in fNIRS_triggerComponents:
