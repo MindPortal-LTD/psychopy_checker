@@ -12,6 +12,9 @@ If you publish work using this script the most relevant publication is:
 """
 
 # --- Import packages ---
+import time
+import serial #for trigger of the Imagent
+
 from psychopy import locale_setup
 from psychopy import prefs
 from psychopy import sound, gui, visual, core, data, event, logging, clock, colors, layout
@@ -101,7 +104,7 @@ outlet = StreamOutlet(info) # initialize stream.
 
 # --- Initialize components for Routine "Wait_Begin" ---
 text_2 = visual.TextStim(win=win, name='text_2',
-    text="Please check the LSL connection in NIRStar or Aurora\n\nPress 'space' to start",  #CHANGE THIS TEXT
+    text="Please check the Imagent connection\n\nPress 'space' to start",  #CHANGE THIS TEXT
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
