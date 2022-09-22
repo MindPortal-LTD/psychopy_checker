@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.2.4),
-    on September 22, 2022, at 12:35
+    on September 22, 2022, at 14:22
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -27,6 +27,7 @@ import sys  # to get file system encoding
 
 import psychopy.iohub as io
 from psychopy.hardware import keyboard
+import serial
 
 
 
@@ -49,7 +50,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\eddyt\\Documents\\GitHub\\psychopy_checker\\Checkerboard_lastrun.py',
+    originPath='C:\\Users\\eddyt\\Documents\\GitHub\\psychopy_checker\\Checkerboard.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -96,10 +97,11 @@ from pylsl import StreamInfo, StreamOutlet # import required classes
 info = StreamInfo(name='TriggerStream', type='Markers', channel_count=1, channel_format='string', source_id='Example') # sets variables for object info
 outlet = StreamOutlet(info) # initialize stream.
 
+#INIT THE STREAM ABOVE - OPEN COM PORT HERE
 
 # --- Initialize components for Routine "Wait_Begin" ---
 text_2 = visual.TextStim(win=win, name='text_2',
-    text="Please check the LSL connection in NIRStar or Aurora\n\nPress 'space' to start",
+    text="Please check the LSL connection in NIRStar or Aurora\n\nPress 'space' to start",  #CHANGE THIS TEXT
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
@@ -396,7 +398,7 @@ for thisExperiment in Experiment:
     # update component parameters for each repeat
     # Run 'Begin Routine' code from code_2
     #outlet.push_sample(x=[1])
-    outlet.push_sample(x=['trialStart'])
+    outlet.push_sample(x=['trialStart'])          #TRIGGER IS HERE FOR STARTING EXPERIMENT - ONLY ADD EXTRA TRIGGERS, DO NOT REPLACE
     # keep track of which components have finished
     fNIRS_triggerComponents = [text_3]
     for thisComponent in fNIRS_triggerComponents:
